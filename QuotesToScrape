@@ -1,0 +1,18 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Step 1: URL of the site
+url = 'https://quotes.toscrape.com/'
+
+# Step 2: Send GET request
+response = requests.get(url)
+
+# Step 3: Parse the page with BeautifulSoup
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Step 4: Find and print all quotes
+quotes = soup.find_all('span', class_='text')
+
+print("Quotes from the website:\n")
+for quote in quotes:
+    print(quote.text.strip())
